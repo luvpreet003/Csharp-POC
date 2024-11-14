@@ -1,20 +1,83 @@
-﻿namespace classes
+﻿using System.Runtime.CompilerServices;
+
+namespace classes
 {
     class Program
     {
 
         static void Main(string[] args)
         {
-            //var customer = new Customer(1);
-            //customer.orders.Add(new Order());
-            //Console.WriteLine(customer.orders.Count());
+            Post post = new Post();
+            Console.WriteLine("Create a Post!");
 
-            var person = new Person(new DateTime(1999, 1, 1));
-            Console.WriteLine("AGE is: {0} ", person.age);
+            while (true)
+            {
+                Console.WriteLine("Write commands below!");
 
-            var cookie = new HttpCookie();
-            cookie["name"] = "Lp";
-            Console.WriteLine(cookie["name"]);
+                var command = Console.ReadLine().ToUpper();
+                if (command == "NEW")
+                {
+                    Console.WriteLine("Title:");
+                    var title = Console.ReadLine();
+                    Console.WriteLine("Description: ");
+                    var description = Console.ReadLine();
+                    post.CreatePost(title, description);
+                }
+                else if (command == "SHOW")
+                {
+                    Post result = post.ShowPost();
+                    Console.WriteLine("Title: {0}, Description: {1}, Vote: {2}, Date created: {3}", result._title, result._description, result._vote, result._dateCreated);
+                }
+                else if (command == "UPVOTE")
+                {
+                    post.UpVote();
+                }
+                else if (command == "DOWNVOTE")
+                {
+                    post.DownVote();
+                }
+                else if (command == "DELETE")
+                {
+                    post.DeletePost();
+                }
+                else
+                {
+                    Console.WriteLine("Invalid command");
+                }
+            }
+        }
+        static void UseStopwatch()
+        {
+            StopWatch watch = new StopWatch();
+            Console.WriteLine("STOPWATCH");
+
+            while (true)
+            {
+                Console.WriteLine("Type start/stop to play!");
+                var command = Console.ReadLine().ToUpper();
+
+                if (command == "START")
+                {
+                    watch.Start();
+
+                }
+                else if (command == "STOP")
+                {
+                    var duration = watch.Stop();
+                    if (duration != TimeSpan.Zero)
+                    {
+                        Console.WriteLine("The watch ran for {0} seconds", duration.TotalSeconds);
+                    }
+                }
+                else if (command == "EXIT")
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid command try again!");
+                }
+            }
         }
 
         static void UseParse()
@@ -24,6 +87,17 @@
                 Console.WriteLine(number);
             else
                 Console.WriteLine("conversion failed");
+
+            //var customer = new Customer(1);
+            //customer.orders.Add(new Order());
+            //Console.WriteLine(customer.orders.Count());
+
+            //var person = new Person(new DateTime(1999, 1, 1));
+            //Console.WriteLine("AGE is: {0} ", person.age);
+
+            //var cookie = new HttpCookie();
+            //cookie["name"] = "Lp";
+            //Console.WriteLine(cookie["name"]);
 
         }
 
