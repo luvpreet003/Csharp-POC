@@ -1,4 +1,4 @@
-﻿using System.Runtime.CompilerServices;
+﻿using csharpTrain;
 
 namespace classes
 {
@@ -6,6 +6,11 @@ namespace classes
     {
 
         static void Main(string[] args)
+        {
+            var dbMigrator = new DbMigrator(new ConsoleLogger());
+            dbMigrator.Migrate();
+        }
+        static void CreateApost()
         {
             Post post = new Post();
             Console.WriteLine("Create a Post!");
@@ -46,6 +51,7 @@ namespace classes
                 }
             }
         }
+
         static void UseStopwatch()
         {
             StopWatch watch = new StopWatch();
